@@ -19,9 +19,9 @@ local keyword = "#33b5ff"
 local comment = "#7d7d7d"
 local user_type = "#00ffef"
 local function_ = "#FFE489"
-local member = "#afFF89"
+local method = "#afFF89"
+local field = "#BBBBFF"
 local lit = "#E9967A"
-local static_var = "#B5DDFF"
 
 local diagn_error = "#E13333"
 local diagn_warn = "#C79E2D"
@@ -53,24 +53,28 @@ setHighlithGroups({
     String = { fg = lit },
     Constant = { fg = lit },
 
-    cString = { fg = lit },
-    cppString = { fg = lit },
-    cNumber = { fg = lit },
-    cppNumber = { fg = lit },
-
     ["@lsp.type.class"] = { fg = user_type },
     ["@lsp.type.stuct"] = { fg = user_type },
     ["@lsp.type.enum"] = { fg = user_type },
     ["@lsp.type.type"] = { fg = user_type },
     ["@lsp.type.typeParameter"] = { fg = user_type },
-    ["@lsp.type.property"] = { fg = member },
-    ["@lsp.type.method"] = { fg = member },
+    ["@lsp.type.property"] = { fg = field },
+    ["@lsp.type.method"] = { fg = method },
 
+    -- C/C++
+    cString = { fg = lit },
+    cppString = { fg = lit },
+    cNumber = { fg = lit },
+    cppNumber = { fg = lit },
+    cOperator = { fg = keyword, bold = true },
+    cIncluded = { fg = preproc },
+
+    ["@lsp.type.macro.cpp"] = { fg = preproc },
+    ["@lsp.type.macro.c"] = { fg = preproc },
+    ["@lsp.type.operator.cpp"] = { fg = keyword, bold = true },
+    ["@lsp.type.operator.c"] = { fg = keyword, bold = true },
     ["@lsp.typemod.variable.globalScope.cpp"] = { italic = true },
     ["@lsp.typemod.variable.globalScope.c"] = { italic = true },
-    ["@lsp.typemod.variable.static.cpp"] = { fg = static_var },
-    ["@lsp.type.enumMember.cpp"] = { fg = static_var },
-    ["@lsp.type.enumMember.c"] = { fg = static_var },
 
     DiagnosticUnderlineError = { undercurl = true, sp = diagn_error },
     DiagnosticUnderlineWarn = { undercurl = true, sp = diagn_warn },
@@ -90,9 +94,6 @@ setHighlithGroups({
     Added = { bg = bg1, fg = "#4BC062" },
     Changed = { bg = bg1, fg = "#4B7AC0" },
     Removed = { bg = bg1, fg = "#EE1010" },
-    -- GitSignsChangedelete = { bg = bg1, fg = "#EE1010" },
-    -- GitSignsTopdelete = { bg = bg1, fg = "#EE1010" },
-    -- GitSignsUntracked = { bg = bg1, fg = "#F5E55A" },
 })
 
 -- terminal colors
