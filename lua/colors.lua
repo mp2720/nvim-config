@@ -28,10 +28,6 @@ local diagn_warn = "#C79E2D"
 local diagn_info = "#909090"
 local diagn_hint = "#909090"
 
-local git_removed = "#e13333"
-local git_changed = "#33b5ff"
-local git_added = "#50ff50"
-
 setHighlithGroups({
     Normal = { bg = bg0 },
     LineNr = { bg = bg1, fg = dim_text },
