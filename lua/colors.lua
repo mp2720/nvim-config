@@ -66,8 +66,8 @@ setHighlithGroups({
     ["@lsp.type.property"] = { fg = member },
     ["@lsp.type.method"] = { fg = member },
 
-    ["@lsp.typemod.variable.globalScope.cpp"] = { underline = true },
-    ["@lsp.typemod.variable.globalScope.c"] = { underline = true },
+    ["@lsp.typemod.variable.globalScope.cpp"] = { italic = true },
+    ["@lsp.typemod.variable.globalScope.c"] = { italic = true },
     ["@lsp.typemod.variable.static.cpp"] = { fg = static_var },
     ["@lsp.type.enumMember.cpp"] = { fg = static_var },
     ["@lsp.type.enumMember.c"] = { fg = static_var },
