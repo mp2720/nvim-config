@@ -22,11 +22,12 @@ local function_ = "#FFE489"
 local method = "#afFF89"
 local field = "#BBBBFF"
 local lit = "#E9967A"
+local namespace = "#ff9fff"
 
 local diagn_error = "#E13333"
 local diagn_warn = "#C79E2D"
-local diagn_info = "#909090"
-local diagn_hint = "#909090"
+local diagn_info = "#b0b0b0"
+local diagn_hint = "#b0b0b0"
 
 setHighlithGroups({
     Normal = { bg = bg0 },
@@ -45,6 +46,7 @@ setHighlithGroups({
     WinSeparator = { fg = bg2 },
     SignColumn = { bg = bg1 },
 
+    Identifier = { fg = norm_text },
     Preproc = { fg = preproc },
     Statement = { fg = keyword, bold = true },
     Type = { fg = keyword, bold = true },
@@ -60,6 +62,17 @@ setHighlithGroups({
     ["@lsp.type.typeParameter"] = { fg = user_type },
     ["@lsp.type.property"] = { fg = field },
     ["@lsp.type.method"] = { fg = method },
+
+    ["@variable"] = { fg = norm_text },
+
+    -- Go
+    ["@type.builtin.go"] = { fg = keyword, bold = true },
+    ["@type.go"] = { fg = user_type },
+    ["@type.definition.go"] = { fg = user_type },
+    ["@property.go"] = { fg = field },
+    ["@variable.member.go"] = { fg = field },
+    ["@function.method.call.go"] = { fg = method },
+    ["@module.go"] = {fg = namespace},
 
     -- C/C++
     cString = { fg = lit },
