@@ -72,7 +72,9 @@ setHighlithGroups({
     ["@property.go"] = { fg = field },
     ["@variable.member.go"] = { fg = field },
     ["@function.method.call.go"] = { fg = method },
-    ["@module.go"] = {fg = namespace},
+    ["@module.go"] = { fg = namespace },
+    ["@constant.go"] = { fg = norm_text },
+    ["@constant.builtin.go"] = { fg = lit },
 
     -- C/C++
     cString = { fg = lit },
