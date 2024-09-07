@@ -76,6 +76,11 @@ setHighlithGroups({
     ["@constant.go"] = { fg = norm_text },
     ["@constant.builtin.go"] = { fg = lit },
 
+    -- Java
+    ["@type.java"] = { fg = user_type },
+    ["@type.builtin.java"] = { fg = keyword },
+    ["@constant.java"] = {},
+
     -- C/C++
     cString = { fg = lit },
     cppString = { fg = lit },

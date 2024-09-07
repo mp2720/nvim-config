@@ -17,7 +17,8 @@ return { {
                 },
             },
             ensure_installed = {
-                "go"
+                "go",
+                "java"
             }
         }
     end
