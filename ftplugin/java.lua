@@ -6,9 +6,12 @@ local root_dir = vim.fs.root(0, { ".git", "mvnw", "gradlew" })
 local workspace_folder = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
 
 -- Lombok setup
-if not vim.fn.glob(home .. "/.config/nvim/java/lombok.jar") then
-    os.execute [[mkdir -p ~/.config/nvim/java]]
-    os.execute [[wget -c -O - https://projectlombok.org/downloads/lombok.jar > ~/.config/nvim/java/lombok.jar]]
+if vim.fn.glob(home .. "/.config/nvim/java/lombok.jar") == "" then
+    assert(os.execute([[mkdir -p ~/.config/nvim/java]]) == 0, "failed to create java nvim dir")
+    assert(os.execute([[wget -c -O - https://projectlombok.org/downloads/lombok.jar > \
+            ~/.config/nvim/java/lombok.jar]]) == 0,
+        "failed to load lombok.jar"
+    )
 end
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
