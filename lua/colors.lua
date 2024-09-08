@@ -80,6 +80,10 @@ setHighlithGroups({
     ["@type.java"] = { fg = user_type },
     ["@type.builtin.java"] = { fg = keyword },
     ["@constant.java"] = {},
+    ["@constant.builtin.java"] = { fg = keyword, bold = true },
+
+    -- Lua
+    ["@constant.builtin.lua"] = { fg = keyword, bold = true },
 
     -- C/C++
     cString = { fg = lit },
@@ -95,6 +99,13 @@ setHighlithGroups({
     ["@lsp.type.operator.c"] = { fg = keyword, bold = true },
     ["@lsp.typemod.variable.globalScope.cpp"] = { italic = true },
     ["@lsp.typemod.variable.globalScope.c"] = { italic = true },
+
+    ["@type.builtin.c"] = { fg = keyword, bold = true },
+    ["@type.c"] = { fg = user_type },
+    ["@type.definition.c"] = { fg = user_type },
+    ["@keyword.import.c"] = { fg = preproc },
+    ["@keyword.directive.define.c"] = { fg = preproc },
+    ["@keyword.directive.c"] = { fg = preproc },
 
     DiagnosticUnderlineError = { undercurl = true, sp = diagn_error },
     DiagnosticUnderlineWarn = { undercurl = true, sp = diagn_warn },
