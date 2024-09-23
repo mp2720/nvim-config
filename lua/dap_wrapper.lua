@@ -1,8 +1,10 @@
 local M = {}
 
-local function find_tab(config_name)
+local dap = require 'dap'
+
+local function find_tab()
     local check_tab = function()
-        return vim.t.dap_wrapper_config_name == config_name
+        return vim.t.dap_wrapper_tab_marker
     end
 
     vim.cmd [[1tabnext]]
@@ -11,30 +13,43 @@ local function find_tab(config_name)
         return 1
     end
 
+    vim.cmd [[tabnext]]
+
     while vim.api.nvim_tabpage_get_number(0) ~= 1 do
         if check_tab() then
             return vim.api.nvim_tabpage_get_number(0)
         end
 
-        vim.cmd [[+tabnext]]
+        vim.cmd [[tabnext]]
     end
 
     return nil
 end
 
-function M.do_dap_action(config_name, filepath, dap_action)
-    local n = find_tab(config_name)
+function M.start(filepath)
+    dap.close()
+
+    M.prev_tab = vim.api.nvim_tabpage_get_number(0)
+
+    local n = find_tab()
     if n == nil then
         vim.cmd "tabnew"
         n = vim.api.nvim_tabpage_get_number(0)
-        vim.t.dap_wrapper_config_name = config_name
+        vim.t.dap_wrapper_tab_marker = true
     end
 
     vim.cmd(string.format("%dtabnext", n))
     vim.cmd(string.format("edit %s", filepath))
 
-    vim.t.dap_wrapper_config_name = config_name
-    dap_action()
+    dap.continue()
+end
+
+function M.stop()
+    if M.prev_tab ~= nil then
+        vim.cmd(string.format("%dtabnext", M.prev_tab))
+    end
+
+    dap.close()
 end
 
 return M
