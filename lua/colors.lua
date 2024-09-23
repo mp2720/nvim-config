@@ -78,7 +78,7 @@ setHighlithGroups({
 
     -- Java
     ["@type.java"] = { fg = user_type },
-    ["@type.builtin.java"] = { fg = keyword },
+    ["@type.builtin.java"] = { fg = keyword, bold = true },
     ["@constant.java"] = {},
     ["@constant.builtin.java"] = { fg = keyword, bold = true },
 
