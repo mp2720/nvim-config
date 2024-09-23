@@ -2,14 +2,17 @@ local home = os.getenv('HOME')
 local jdtls = require('jdtls')
 
 local root_dir = vim.fs.root(0, { ".git", "mvnw", "gradlew" })
+if root_dir == nil then
+    root_dir = vim.fn.getcwd()
+end
 
 local workspace_folder = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
 
 -- Lombok setup
-if vim.fn.glob(home .. "/.config/nvim/java/lombok.jar") == "" then
-    assert(os.execute([[mkdir -p ~/.config/nvim/java]]) == 0, "failed to create java nvim dir")
+if vim.fn.glob(home .. "/.config/nvim/java/jars/lombok.jar") == "" then
+    assert(os.execute([[mkdir -p ~/.config/nvim/java/jars]]) == 0, "failed to create java nvim dir")
     assert(os.execute([[wget -c -O - https://projectlombok.org/downloads/lombok.jar > \
-            ~/.config/nvim/java/lombok.jar]]) == 0,
+            ~/.config/nvim/java/jars/lombok.jar]]) == 0,
         "failed to load lombok.jar"
     )
 end
@@ -35,7 +38,7 @@ local config = {
         '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
 
         -- lombok
-        '-javaagent:' .. home .. '/.config/nvim/java/lombok.jar',
+        '-javaagent:' .. home .. '/.config/nvim/java/jars/lombok.jar',
 
         -- 💀
         '-jar', home .. '/jdtls/plugins/org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar',
@@ -65,6 +68,11 @@ local config = {
     -- for a list of options
     settings = {
         java = {
+            format = {
+                settings = {
+                    -- url = home .. '/.config/nvim/java/google-style.xml'
+                }
+            }
         }
     },
 
