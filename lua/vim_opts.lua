@@ -1,3 +1,4 @@
+vim.opt.swapfile = false
 vim.opt.termguicolors = true
 vim.opt.mouse = 'a'
 vim.opt.number = true
@@ -22,7 +23,7 @@ vim.opt.laststatus = 2
 vim.opt.showtabline = 2
 vim.opt.equalalways = false
 vim.opt.exrc = true
-vim.opt.wrap = true
+vim.opt.wrap = false
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.cursorline = true

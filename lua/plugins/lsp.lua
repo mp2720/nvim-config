@@ -98,7 +98,7 @@ return {
             -- Set up lspconfig.
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
             capabilities.textDocument.completion.completionItem.snippetSupport = false
-            vim.diagnostic.config({ update_in_insert = true })
+            vim.diagnostic.config({ update_in_insert = true, severity_sort = true })
 
             local lsp_conf = require 'lspconfig'
             lsp_conf.lua_ls.setup({
@@ -120,12 +120,25 @@ return {
                 cmd = { 'gopls' },
             }
             lsp_conf.pyright.setup {
-                capabilities = capabilities
+                capabilities = capabilities,
+                cmd = {
+                    'pyright',
+                    '-p',
+                    'pyrightconfig.json'
+                }
+            }
+
+            local goto_flags = {
+                severity = { min = vim.diagnostic.severity.WARN }
             }
 
             vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-            vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-            vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+            vim.keymap.set('n', '[d', function()
+                vim.diagnostic.goto_prev(goto_flags)
+            end)
+            vim.keymap.set('n', ']d', function()
+                vim.diagnostic.goto_next(goto_flags)
+            end)
             vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename)
             vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
             vim.keymap.set('n', '<space>rr', vim.lsp.buf.references)
@@ -140,16 +153,17 @@ return {
                     local client = vim.lsp.get_client_by_id(ev.data.client_id)
                     if client.name == "jdtls" then
                         client.server_capabilities.semanticTokensProvider = nil
+                        require('jdtls').setup_dap()
                     end
-
-                    local opts = { buffer = ev.buf }
-                    vim.keymap.set(
-                        'n',
-                        '<space>f',
-                        function() vim.lsp.buf.format { async = true } end, opts
-                    )
                 end
             })
+
+            vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+                vim.lsp.diagnostic.on_publish_diagnostics, {
+                    signs = { severity = { min = vim.diagnostic.severity.WARN } },
+                    virtual_text = { severity = { min = vim.diagnostic.severity.WARN } }
+                }
+            )
         end
     },
 }

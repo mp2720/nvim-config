@@ -4,127 +4,130 @@ local function setHighlithGroups(groups)
     end
 end
 
-local bg0 = "#101010"
-local bg1 = "#1a1a1a"
-local bg2 = "#303030"
+M = {}
 
-local cursor_line = "#171717"
+M.bg0 = "#101010"
+M.bg1 = "#1a1a1a"
+M.bg2 = "#303030"
 
-local norm_text = "#ffffff"
-local dim_text = "#a0a0a0"
-local inv_text = "#101010"
+M.cursor_line = "#171717"
 
-local preproc = "#a25fe5"
-local keyword = "#33b5ff"
-local comment = "#7d7d7d"
-local user_type = "#00ffef"
-local function_ = "#FFE489"
-local method = "#afFF89"
-local field = "#BBBBFF"
-local lit = "#E9967A"
-local namespace = "#ff9fff"
+M.norm_text = "#ffffff"
+M.dim_text = "#a0a0a0"
+M.inv_text = "#101010"
 
-local diagn_error = "#E13333"
-local diagn_warn = "#C79E2D"
-local diagn_info = "#b0b0b0"
-local diagn_hint = "#b0b0b0"
+M.preproc = "#a25fe5"
+M.keyword = "#33b5ff"
+M.comment = "#7d7d7d"
+M.user_type = "#00ffef"
+M.function_ = "#FFE489"
+M.method = "#afFF89"
+M.field = "#BBBBFF"
+M.lit = "#E9967A"
+M.namespace = "#ff9fff"
+
+M.diagn_error = "#E13333"
+M.diagn_warn = "#C79E2D"
+M.diagn_info = "#b0b0b0"
+M.diagn_hint = "#b0b0b0"
+
 
 setHighlithGroups({
-    Normal = { bg = bg0 },
-    LineNr = { bg = bg1, fg = dim_text },
-    Folded = { bg = bg2 },
-    NormalFloat = { bg = bg1 },
-    FloatTitle = { bg = bg1, fg = norm_text },
-    FloatBorder = { bg = bg1, fg = dim_text },
-    Pmenu = { bg = bg1 },
-    VertSplit = { bg = bg0, fg = dim_text },
-    ColorColumn = { bg = bg2 },
-    CursorLine = { bg = cursor_line },
-    CursorLineNr = { bg = bg2, fg = norm_text },
-    TabLineFill = { bg = bg1, fg = dim_text },
-    TabLineSel = { bg = bg2, fg = norm_text },
-    WinSeparator = { fg = bg2 },
-    SignColumn = { bg = bg1 },
+    Normal = { bg = M.bg0 },
+    LineNr = { bg = M.bg1, fg = M.dim_text },
+    Folded = { bg = M.bg2 },
+    NormalFloat = { bg = M.bg1 },
+    FloatTitle = { bg = M.bg1, fg = M.norm_text },
+    FloatBorder = { bg = M.bg1, fg = M.dim_text },
+    Pmenu = { bg = M.bg1 },
+    VertSplit = { bg = M.bg0, fg = M.dim_text },
+    ColorColumn = { bg = M.bg2 },
+    CursorLine = { bg = M.cursor_line },
+    CursorLineNr = { bg = M.bg2, fg = M.norm_text },
+    TabLineFill = { bg = M.bg1, fg = M.dim_text },
+    TabLineSel = { bg = M.bg2, fg = M.norm_text },
+    WinSeparator = { fg = M.bg2 },
+    SignColumn = { bg = M.bg1 },
 
-    Identifier = { fg = norm_text },
-    Preproc = { fg = preproc },
-    Statement = { fg = keyword, bold = true },
-    Type = { fg = keyword, bold = true },
-    Comment = { fg = comment },
-    Function = { fg = function_ },
-    String = { fg = lit },
-    Constant = { fg = lit },
+    Identifier = { fg = M.norm_text },
+    Preproc = { fg = M.preproc },
+    Statement = { fg = M.keyword, bold = true },
+    Type = { fg = M.keyword, bold = true },
+    Comment = { fg = M.comment },
+    Function = { fg = M.function_ },
+    String = { fg = M.lit },
+    Constant = { fg = M.lit },
 
-    ["@lsp.type.class"] = { fg = user_type },
-    ["@lsp.type.stuct"] = { fg = user_type },
-    ["@lsp.type.enum"] = { fg = user_type },
-    ["@lsp.type.type"] = { fg = user_type },
-    ["@lsp.type.typeParameter"] = { fg = user_type },
-    ["@lsp.type.property"] = { fg = field },
-    ["@lsp.type.method"] = { fg = method },
+    ["@lsp.type.class"] = { fg = M.user_type },
+    ["@lsp.type.stuct"] = { fg = M.user_type },
+    ["@lsp.type.enum"] = { fg = M.user_type },
+    ["@lsp.type.type"] = { fg = M.user_type },
+    ["@lsp.type.typeParameter"] = { fg = M.user_type },
+    ["@lsp.type.property"] = { fg = M.field },
+    ["@lsp.type.method"] = { fg = M.method },
 
-    ["@variable"] = { fg = norm_text },
+    ["@variable"] = { fg = M.norm_text },
 
     -- Go
-    ["@type.builtin.go"] = { fg = keyword, bold = true },
-    ["@type.go"] = { fg = user_type },
-    ["@type.definition.go"] = { fg = user_type },
-    ["@property.go"] = { fg = field },
-    ["@variable.member.go"] = { fg = field },
-    ["@function.method.call.go"] = { fg = method },
-    ["@module.go"] = { fg = namespace },
-    ["@constant.go"] = { fg = norm_text },
-    ["@constant.builtin.go"] = { fg = lit },
+    ["@type.builtin.go"] = { fg = M.keyword, bold = true },
+    ["@type.go"] = { fg = M.user_type },
+    ["@type.definition.go"] = { fg = M.user_type },
+    ["@property.go"] = { fg = M.field },
+    ["@variable.member.go"] = { fg = M.field },
+    ["@function.method.call.go"] = { fg = M.method },
+    ["@module.go"] = { fg = M.namespace },
+    ["@constant.go"] = { fg = M.norm_text },
+    ["@constant.builtin.go"] = { fg = M.lit },
 
     -- Java
-    ["@type.java"] = { fg = user_type },
-    ["@type.builtin.java"] = { fg = keyword, bold = true },
+    ["@type.java"] = { fg = M.user_type },
+    ["@type.builtin.java"] = { fg = M.keyword, bold = true },
     ["@constant.java"] = {},
-    ["@constant.builtin.java"] = { fg = keyword, bold = true },
+    ["@constant.builtin.java"] = { fg = M.keyword, bold = true },
 
     -- Lua
-    ["@constant.builtin.lua"] = { fg = keyword, bold = true },
+    ["@constant.builtin.lua"] = { fg = M.keyword, bold = true },
 
     -- C/C++
-    cString = { fg = lit },
-    cppString = { fg = lit },
-    cNumber = { fg = lit },
-    cppNumber = { fg = lit },
-    cOperator = { fg = keyword, bold = true },
-    cIncluded = { fg = preproc },
+    cString = { fg = M.lit },
+    cppString = { fg = M.lit },
+    cNumber = { fg = M.lit },
+    cppNumber = { fg = M.lit },
+    cOperator = { fg = M.keyword, bold = true },
+    cIncluded = { fg = M.preproc },
 
-    ["@lsp.type.macro.cpp"] = { fg = preproc },
-    ["@lsp.type.macro.c"] = { fg = preproc },
-    ["@lsp.type.operator.cpp"] = { fg = keyword, bold = true },
-    ["@lsp.type.operator.c"] = { fg = keyword, bold = true },
+    ["@lsp.type.macro.cpp"] = { fg = M.preproc },
+    ["@lsp.type.macro.c"] = { fg = M.preproc },
+    ["@lsp.type.operator.cpp"] = { fg = M.keyword, bold = true },
+    ["@lsp.type.operator.c"] = { fg = M.keyword, bold = true },
     ["@lsp.typemod.variable.globalScope.cpp"] = { italic = true },
     ["@lsp.typemod.variable.globalScope.c"] = { italic = true },
 
-    ["@type.builtin.c"] = { fg = keyword, bold = true },
-    ["@type.c"] = { fg = user_type },
-    ["@type.definition.c"] = { fg = user_type },
-    ["@keyword.import.c"] = { fg = preproc },
-    ["@keyword.directive.define.c"] = { fg = preproc },
-    ["@keyword.directive.c"] = { fg = preproc },
+    ["@type.builtin.c"] = { fg = M.keyword, bold = true },
+    ["@type.c"] = { fg = M.user_type },
+    ["@type.definition.c"] = { fg = M.user_type },
+    ["@keyword.import.c"] = { fg = M.preproc },
+    ["@keyword.directive.define.c"] = { fg = M.preproc },
+    ["@keyword.directive.c"] = { fg = M.preproc },
 
-    DiagnosticUnderlineError = { undercurl = true, sp = diagn_error },
-    DiagnosticUnderlineWarn = { undercurl = true, sp = diagn_warn },
-    DiagnosticUnderlineInfo = { undercurl = true, sp = diagn_info },
-    DiagnosticUnderlineHint = { undercurl = true, sp = diagn_hint },
+    DiagnosticUnderlineError = { undercurl = true, sp = M.diagn_error },
+    DiagnosticUnderlineWarn = { undercurl = true, sp = M.diagn_warn },
+    DiagnosticUnderlineInfo = { undercurl = true, sp = M.diagn_info },
+    DiagnosticUnderlineHint = { undercurl = true, sp = M.diagn_hint },
 
-    StatusColumnDiagnosticError = { bg = diagn_error, fg = norm_text },
-    StatusColumnDiagnosticWarn = { bg = diagn_warn, fg = norm_text },
-    StatusColumnDiagnosticInfo = { bg = diagn_info, fg = inv_text },
-    StatusColumnDiagnosticHint = { bg = diagn_hint, fg = inv_text },
+    StatusColumnDiagnosticError = { bg = M.diagn_error, fg = M.norm_text },
+    StatusColumnDiagnosticWarn = { bg = M.diagn_warn, fg = M.norm_text },
+    StatusColumnDiagnosticInfo = { bg = M.diagn_info, fg = M.inv_text },
+    StatusColumnDiagnosticHint = { bg = M.diagn_hint, fg = M.inv_text },
 
-    NeoTreeTitleBar = { bg = bg1, fg = dim_text },
-    NeoTreeFloatBorder = { bg = bg1, fg = bg1 },
+    NeoTreeTitleBar = { bg = M.bg1, fg = M.dim_text },
+    NeoTreeFloatBorder = { bg = M.bg1, fg = M.bg1 },
 
-    IndentBlanklineIndent1 = { fg = bg2, nocombine = true },
+    IndentBlanklineIndent1 = { fg = M.bg2, nocombine = true },
 
-    Added = { bg = bg1, fg = "#4BC062" },
-    Changed = { bg = bg1, fg = "#4B7AC0" },
-    Removed = { bg = bg1, fg = "#EE1010" },
+    Added = { bg = M.bg1, fg = "#4BC062" },
+    Changed = { bg = M.bg1, fg = "#4B7AC0" },
+    Removed = { bg = M.bg1, fg = "#EE1010" },
 })
 
 -- terminal colors
@@ -144,3 +147,5 @@ vim.g.terminal_color_12 = "#6c99ba"
 vim.g.terminal_color_13 = "#9e4e85"
 vim.g.terminal_color_14 = "#7dd5cf"
 vim.g.terminal_color_15 = "#F5F5F5"
+
+return M

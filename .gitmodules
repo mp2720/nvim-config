@@ -1,0 +1,6 @@
+[submodule "java-debug"]
+	path = java-debug
+	url = https://github.com/microsoft/java-debug
+[submodule "java/java-debug"]
+	path = java/java-debug
+	url = https://github.com/microsoft/java-debug
