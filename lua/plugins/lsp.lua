@@ -1,6 +1,9 @@
+local cnt = 0
+
 return {
     {
         "ray-x/lsp_signature.nvim",
+        commit = "ae91a303a2258cb9cd9501e9d20c2dc92792d362",
         config = function()
             require 'lsp_signature'.setup {
                 hint_prefix = '',
@@ -106,9 +109,9 @@ return {
             })
             lsp_conf.clangd.setup({
                 cmd = {
-                    "clangd",
+                    "/usr/bin/ls",
+                    "fsafsdfdf",
                     "--header-insertion=never",
-                    "-query-driver=/home/user/.arduino15/packages/**"
                 },
                 capabilities = capabilities,
             })
@@ -117,7 +120,7 @@ return {
             })
             lsp_conf.gopls.setup {
                 capabilities = capabilities,
-                cmd = { 'gopls' },
+                cmd = { 'gopl    s' },
             }
             lsp_conf.pyright.setup {
                 capabilities = capabilities,
@@ -125,6 +128,17 @@ return {
                     'pyright',
                     '-p',
                     'pyrightconfig.json'
+                }
+            }
+            lsp_conf.ocamllsp.setup {}
+            lsp_conf.hls.setup {
+                filetypes = { 'haskell', 'lhaskell' },
+                settings = {
+                    haskell = {
+                        plugin = {
+                            rename = { config = { diff = true } }
+                        }
+                    }
                 }
             }
 
@@ -151,7 +165,7 @@ return {
                 group = vim.api.nvim_create_augroup('UserLspConfig', {}),
                 callback = function(ev)
                     local client = vim.lsp.get_client_by_id(ev.data.client_id)
-                    if client.name == "jdtls" then
+                    if client.name == "jdtls" or client.name == "rust_analyzer" then
                         client.server_capabilities.semanticTokensProvider = nil
                         require('jdtls').setup_dap()
                     end

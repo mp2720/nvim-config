@@ -19,7 +19,9 @@ return { {
             ensure_installed = {
                 "go",
                 "java",
-                "python"
+                "python",
+                "haskell",
+                "rust"
             }
         }
     end
