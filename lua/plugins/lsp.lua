@@ -1,9 +1,6 @@
-local cnt = 0
-
 return {
     {
         "ray-x/lsp_signature.nvim",
-        commit = "ae91a303a2258cb9cd9501e9d20c2dc92792d362",
         config = function()
             require 'lsp_signature'.setup {
                 hint_prefix = '',
@@ -109,8 +106,7 @@ return {
             })
             lsp_conf.clangd.setup({
                 cmd = {
-                    "/usr/bin/ls",
-                    "fsafsdfdf",
+                    "clangd",
                     "--header-insertion=never",
                 },
                 capabilities = capabilities,
